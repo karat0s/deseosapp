@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="colorPrincipal">
+    <ion-title>Lista de pendientes</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngFor="let lista of listaDeseos.listas; let i = index">
+
+    <ion-item color="colorCabezeras">
+
+      <h2>{{lista.nombre}}</h2>
+
+      <ion-note item-right>
+        {{lista.items.length}}
+      </ion-note>
+    </ion-item>
+
+    <ion-list>
+
+      <ion-item *ngFor="let item of lista.items; i = index; | slice:0:2">
+        <ion-icon *ngIf="!item.terminada " ios="ios-square-outline" md="md-square-outline"></ion-icon>
+        <ion-icon *ngIf="item.terminada " ios="ios-checkbox-outline " md="md-checkbox-outline "></ion-icon>
+        {{item.nombre | slicer:i}}
+      </ion-item>
+
+      <ion-item class="text-center " *ngIf="lista.items.length> 2">
+        <button ion-button full color="colorPrincipal" (click)="verMas()"><ion-icon ios="ios-arrow-down" md="md-arrow-down"></ion-icon></button>
+      </ion-item>
+
+    </ion-list>
+
+  </ion-card>
+
+  <ion-fab right bottom>
+    <button ion-fab color="colorPrincipal" (click)="irAgregar()">
+       <ion-icon ios="ios-add" md="md-add"></ion-icon>
+    </button>
+  </ion-fab>
+
+
+</ion-content>
